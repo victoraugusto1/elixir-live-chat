@@ -12,7 +12,8 @@ defmodule LiveChat.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: LiveChat.PubSub},
       # Start the Endpoint (http/https)
-      LiveChatWeb.Endpoint
+      LiveChatWeb.Endpoint,
+      LiveChatWeb.Presence
       # Start a worker by calling: LiveChat.Worker.start_link(arg)
       # {LiveChat.Worker, arg}
     ]

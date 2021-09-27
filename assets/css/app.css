@@ -3,16 +3,20 @@
 
 #chat-container {
   display: flex;
-  border: 1px solid #CCCCCC;
-  padding: 1em;
-  margin: -1em 1em 1em -1em;
-  flex-direction: column;
   justify-content: space-between;
   height: 500px;
 }
 
+#user-list p {
+  margin: 0;
+  padding: 0;
+}
+
 #chat-messages {
   flex-grow: 1;
+  padding: 1em;
+  margin: -1em 1em 1em -1em;
+  border: 1px solid #cccccc;
 }
 
 /* LiveView specific classes for your customizations */

@@ -5,19 +5,29 @@ defmodule LiveChatWeb.RoomLive do
   @impl true
   def mount(%{"id" => room_id}, _session, socket) do
     topic = "room:" <> room_id
-    if connected?(socket), do: LiveChatWeb.Endpoint.subscribe(topic)
+    username = MnemonicSlugs.generate_slug(1)
+    if connected?(socket) do
+      LiveChatWeb.Endpoint.subscribe(topic)
+      LiveChatWeb.Presence.track(
+        self(),
+        topic,
+        username,
+        %{}
+      )
+    end
     {:ok,
     assign(socket,
       room_id: room_id,
       topic: topic,
-      messages: [%{uuid: UUID.uuid4(), content: "User joined the chat"}]
+      messages: [ ],
+      users_online: []
     )}
   end
 
   @impl true
   def handle_event("random-room", _session, socket) do
-    random_slug = "/" <> MnemonicSlugs.generate_slug(4)
-    {:noreply, push_redirect(socket, to: random_slug)}
+    room_name = "/" <> MnemonicSlugs.generate_slug(4)
+    {:noreply, push_redirect(socket, to: room_name)}
   end
 
   @impl true
@@ -32,4 +42,24 @@ defmodule LiveChatWeb.RoomLive do
   def handle_info(%{event: "new-message", payload: message}, socket) do
     {:noreply, assign(socket, messages: [message])}
   end
+
+  @impl true
+  def handle_info(%{event: "presence_diff", payload: %{joins: users_joining, leaves: users_leaving}}, socket) do
+    join_messages = users_joining
+    |> Map.keys()
+    |> Enum.map(fn(username) -> %{uuid: UUID.uuid4(), content: "#{username} has joined the chat"} end)
+
+    leave_messages = users_leaving
+    |> Map.keys()
+    |> Enum.map(fn(username) -> %{uuid: UUID.uuid4(), content: "#{username} has left the chat"} end)
+
+    users_online = socket.assigns.topic
+    |> LiveChatWeb.Presence.list()
+    |> Map.keys()
+
+    IO.inspect(users_online)
+
+    {:noreply, assign(socket, messages: join_messages ++ leave_messages, users_online: users_online)}
+  end
+
 end
