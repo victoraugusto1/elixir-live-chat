@@ -11,6 +11,7 @@ config :live_chat, LiveChatWeb.Endpoint,
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
+  ecto_repos: [Chat.Repo],
   watchers: [
     node: [
       "node_modules/webpack/bin/webpack.js",
