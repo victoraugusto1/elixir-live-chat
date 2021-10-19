@@ -12,7 +12,7 @@ use Mix.Config
 config :live_chat, LiveChatWeb.Endpoint,
   url: [host: "example.com", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json",
-  ecto_repos: [Chat.Repo]
+  ecto_repos: [LiveChat.Repo]
 
 # Do not print debug messages in production
 config :logger, level: :info

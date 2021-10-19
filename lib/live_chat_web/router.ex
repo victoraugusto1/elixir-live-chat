@@ -17,8 +17,11 @@ defmodule LiveChatWeb.Router do
   scope "/", LiveChatWeb do
     pipe_through :browser
 
+    resources "/users", UserController
+
     get "/", PageController, :index
-    live "/:id", RoomLive, :index
+    get "/new_room", RoomController, :new
+    live "/room/:id", RoomLive, :index
   end
 
   # Other scopes may use custom stacks.

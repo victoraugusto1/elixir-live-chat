@@ -7,7 +7,7 @@
 # General application configuration
 use Mix.Config
 
-config :live_chat, Chat.Repo,
+config :live_chat, LiveChat.Repo,
   database: "live_chat_repo",
   username: "live_chat",
   password: "live_chat",
@@ -29,7 +29,7 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-config :live_chat, ecto_repos: [Chat.Repo]
+config :live_chat, ecto_repos: [LiveChat.Repo]
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

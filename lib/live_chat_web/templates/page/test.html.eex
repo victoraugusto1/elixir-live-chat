@@ -1,0 +1,1 @@
+<p>this is test.html, another template, and it's being called from <%= @origin_information %></p>

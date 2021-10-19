@@ -26,7 +26,7 @@ defmodule LiveChatWeb.RoomLive do
 
   @impl true
   def handle_event("random-room", _session, socket) do
-    room_name = "/" <> MnemonicSlugs.generate_slug(4)
+    room_name = "/room/" <> MnemonicSlugs.generate_slug(4)
     {:noreply, push_redirect(socket, to: room_name)}
   end
 

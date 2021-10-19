@@ -5,7 +5,7 @@ use Mix.Config
 config :live_chat, LiveChatWeb.Endpoint,
   http: [port: 4002],
   server: false,
-  ecto_repos: [Chat.Repo]
+  ecto_repos: [LiveChat.Repo]
 
 # Print only warnings and errors during test
 config :logger, level: :warn

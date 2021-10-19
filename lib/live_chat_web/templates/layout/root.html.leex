@@ -12,7 +12,8 @@
   <body>
     <header>
       <section class="container">
-        <h1>Hello!</h1>
+        <h1>This thing is being rendered in every page (root.html)</h1>
+        <%= button("go to chat", to: "/new_room", method: :get) %>
       </section>
     </header>
     <%= @inner_content %>

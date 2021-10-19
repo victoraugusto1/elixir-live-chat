@@ -1,1 +1,2 @@
-<p>hello</p>
+<p>this is index.html, is being called from the page controller and page view</p>
+<%= render "test.html", origin_information: "index template" %>

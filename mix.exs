@@ -20,7 +20,7 @@ defmodule LiveChat.MixProject do
   def application do
     [
       mod: {LiveChat.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :postgrex, :phoenix_ecto]
     ]
   end
 
@@ -47,7 +47,8 @@ defmodule LiveChat.MixProject do
       {:mnemonic_slugs, "~> 0.0.3"},
       {:uuid, "~> 1.1.8"},
       {:ecto_sql, "~> 3.0"},
-      {:postgrex, ">= 0.0.0"}
+      {:postgrex, ">= 0.0.0"},
+      {:phoenix_ecto, "~> 3.0"}
     ]
   end
 
